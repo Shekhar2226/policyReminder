@@ -24,6 +24,8 @@ app.post('/api/sendEmail', async (req, res) => {
       const { id, transactionId, timestamp, data, type, username } = req.body;
   
       const policyNumber = data["policyLocator"]; // policyLocator
+
+      const reminderName = data["reminderName"];
   
       // Creating Authorization token
       const response_auth = await fetch('https://api.sandbox.socotra.com/account/authenticate', {
@@ -65,7 +67,8 @@ app.post('/api/sendEmail', async (req, res) => {
         throw new Error('Invalid policy data: missing email ');
       }
   
-      await sendEmail(email, 'Hello Reminder', 'Hii I am here.');
+      
+      await sendEmail(email, 'Reminder Email', `This is reminder for ${reminderName}.`);
   
       res.status(200).json({ message: 'Request received successfully' });
     } catch (error) {
