@@ -1,14 +1,5 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import fetch from 'node-fetch';
-
-import { promisify } from 'util';
-//import AWS from 'aws-sdk';
-//import S3FS from 's3fs';
-
-
-//const s3fsImpl = new S3FS('cyclic-long-erin-kangaroo-garb-ap-southeast-1');
-
 
 const transporter = nodemailer.createTransport({
   service: 'hotmail',
@@ -69,10 +60,6 @@ app.post('/api/sendEmail', async (req, res) => {
   
       const js_obj_policy = await response_policy.json();
       const email = js_obj_policy.characteristics[0]?.fieldValues?.email;
-      //const doc = js_obj_policy.documents[0]?.url;
-  
-      //const documentType = js_obj_policy.documents[0]?.displayName;
-  
       
       if (!email ) {
         throw new Error('Invalid policy data: missing email ');
