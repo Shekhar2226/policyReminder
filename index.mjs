@@ -68,7 +68,7 @@ app.post('/api/sendEmail', async (req, res) => {
       }
   
       
-      await sendEmail(email, 'Reminder Email', `This is reminder for ${reminderName}.`);
+      await sendEmail(email, 'Reminder Email', `This is reminder for ${policyNumber} with regarding ${reminderName}.`);
   
       res.status(200).json({ message: 'Request received successfully' });
     } catch (error) {
